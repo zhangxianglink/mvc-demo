@@ -1,0 +1,19 @@
+#app2 {}
+#app2 .tar-bar {
+    display: flex;
+}
+#app2 .tar-bar li{
+    width: 50%;
+    border: 1px solid pink;
+}
+#app2 .tar-bar li.pink{
+    background-color: pink;
+    color: red;
+}
+#app2 .tar-content {}
+#app2 .tar-content li{
+    display: none;
+}
+#app2 .tar-content li.active{
+    display: block;
+}

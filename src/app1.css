@@ -1,0 +1,15 @@
+#app1 {
+    height: 50vh;
+    width: 50vw;    
+}
+#app1 .output{
+    position:absolute;
+    top:23%;
+    left:23%;
+}
+#app1 .actions{
+    position:absolute;
+    top:26%;
+    left:20%;
+    margin-left: 10px;
+}

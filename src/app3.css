@@ -1,0 +1,11 @@
+#app3 .sequare{
+    margin-top: 10vh;
+    margin-left: 10vw;
+    background-color: salmon;
+    width: 10vw;
+    height: 10vh;
+    transition: 1s;
+}
+#app3 .sequare.active{
+    transform: translateX(20vw);
+}

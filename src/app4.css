@@ -1,0 +1,21 @@
+@keyframes changeColor{
+    0%{
+        background-color: red;
+    }
+    100%{
+        background-color: blue;
+    }
+}
+
+#app4 .cricle{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    border: 1px solid green;
+    margin-left: 15vw;
+    margin-top: 15vh;
+}
+
+#app4 .cricle.active{
+    animation: changeColor 1s infinite alternate linear;
+}

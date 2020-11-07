@@ -1,0 +1,93 @@
+*{margin: 0; padding: 0; box-sizing: content-box;}
+*::after{
+    box-sizing: border-box;
+}
+*::before{
+    box-sizing: border-box;
+}
+ol,li{
+    list-style: none;
+}
+#app1 {
+    height: 50vh;
+    width: 50vw;    
+}
+#app1 .output{
+    position:absolute;
+    top:23%;
+    left:23%;
+}
+#app1 .actions{
+    position:absolute;
+    top:26%;
+    left:20%;
+    margin-left: 10px;
+}
+body{
+    overflow: hidden;
+}
+body > .page {
+    display: flex;
+    flex-wrap: wrap;
+}
+body > .page > section {
+    height: 50vh;
+    width: 50vw; 
+    margin: -1px;
+    border: 1px solid blue;
+}
+
+#app2 {}
+#app2 .tar-bar {
+    display: flex;
+}
+#app2 .tar-bar li{
+    width: 50%;
+    border: 1px solid pink;
+}
+#app2 .tar-bar li.pink{
+    background-color: pink;
+    color: red;
+}
+#app2 .tar-content {}
+#app2 .tar-content li{
+    display: none;
+}
+#app2 .tar-content li.active{
+    display: block;
+}
+
+#app3 .sequare{
+    margin-top: 10vh;
+    margin-left: 10vw;
+    background-color: salmon;
+    width: 10vw;
+    height: 10vh;
+    transition: 1s;
+}
+#app3 .sequare.active{
+    transform: translateX(20vw);
+}
+@keyframes changeColor{
+    0%{
+        background-color: red;
+    }
+    100%{
+        background-color: blue;
+    }
+}
+
+#app4 .cricle{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    border: 1px solid green;
+    margin-left: 15vw;
+    margin-top: 15vh;
+}
+
+#app4 .cricle.active{
+    animation: changeColor 1s infinite alternate linear;
+}
+
+/*# sourceMappingURL=/main.1f19ae8e.css.map */
