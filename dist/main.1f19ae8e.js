@@ -11383,6 +11383,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var $app4 = (0, _jquery.default)("#app4 .cricle");
 $app4.on('mouseenter', function () {
   $app4.addClass('active');
+}).on('mouseleave', function () {
+  $app4.removeClass('active');
 });
 },{"jquery":"../node_modules/jquery/dist/jquery.js","./app4.css":"app4.css"}],"main.js":[function(require,module,exports) {
 "use strict";
@@ -11426,7 +11428,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50135" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57978" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
