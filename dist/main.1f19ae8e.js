@@ -11294,6 +11294,8 @@ require("./app1.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var app1Html = "<section id=\"app1\">\n                    <div class=\"output\">\n                        <span id='number'>100</span>\n                    </div>\n                    <div class=\"actions\">\n                        <button id='add1'>+2</button>\n                        <button id='subtract2'>-2</button>\n                        <button id='mulitply3'>*2</button>\n                        <button id = 'divide4'>/2</button>\n                    </div>\n                </section>";
+(0, _jquery.default)(app1Html).appendTo('body > .page');
 var $button1 = (0, _jquery.default)('#add1');
 var $button2 = (0, _jquery.default)('#subtract2');
 var $button3 = (0, _jquery.default)('#mulitply3');
@@ -11339,6 +11341,8 @@ require("./app2.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var app2Html = "<section id=\"app2\">\n                    <ol class=\"tar-bar\">\n                        <li>tap 1</li>\n                        <li>tap 2</li>\n                    </ol>\n                    <ol class=\"tar-content\">\n                        <li>\u6211\u7684\u4EE3\u7801\u5C31\u50CF\u8BD7\u53E5</li>\n                        <li>\u80FD\u8FD0\u884C\u5C31\u597D</li>\n                    </ol>\n                </section>";
+(0, _jquery.default)(app2Html).appendTo('body > .page');
 var $tarBar = (0, _jquery.default)('#app2 .tar-bar');
 var $tarContent = (0, _jquery.default)('#app2 .tar-content');
 var key = "app2 index";
@@ -11365,6 +11369,8 @@ require("./app3.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var app3Html = "    <section id=\"app3\">\n                        <div class=\"sequare\">\n                            \u65B9\u5F62\n                        </div>\n                    </section>";
+(0, _jquery.default)(app3Html).appendTo('body > .page');
 var $app3 = (0, _jquery.default)('#app3 .sequare');
 var key = 'app3 click';
 var localKey = localStorage.getItem(key) === 'yes';
@@ -11392,6 +11398,8 @@ require("./app4.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var app4Html = "<section id=\"app4\">\n                    <div class=\"cricle\">\n                    </div>\n                    </section>";
+(0, _jquery.default)(app4Html).appendTo('body > .page');
 var $app4 = (0, _jquery.default)("#app4 .cricle");
 $app4.on('mouseenter', function () {
   $app4.addClass('active');
@@ -11440,7 +11448,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50848" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54039" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
