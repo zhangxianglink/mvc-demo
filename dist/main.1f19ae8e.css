@@ -8,6 +8,20 @@
 ol,li{
     list-style: none;
 }
+body{
+    overflow: hidden;
+}
+body > .page {
+    display: flex;
+    flex-wrap: wrap;
+}
+body > .page > section {
+    height: 50vh;
+    width: 50vw; 
+    margin: -1px;
+    border: 1px solid blue;
+}
+
 #app1 {
     height: 50vh;
     width: 50vw;    
@@ -23,21 +37,6 @@ ol,li{
     left:20%;
     margin-left: 10px;
 }
-body{
-    overflow: hidden;
-}
-body > .page {
-    display: flex;
-    flex-wrap: wrap;
-}
-body > .page > section {
-    height: 50vh;
-    width: 50vw; 
-    margin: -1px;
-    border: 1px solid blue;
-}
-
-#app2 {}
 #app2 .tar-bar {
     display: flex;
 }
@@ -49,7 +48,7 @@ body > .page > section {
     background-color: pink;
     color: red;
 }
-#app2 .tar-content {}
+
 #app2 .tar-content li{
     display: none;
 }

@@ -189,6 +189,11 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
+},{"_css_loader":"../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/css-loader.js"}],"gobal.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
 },{"_css_loader":"../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/css-loader.js"}],"../../../AppData/Local/Yarn/Data/global/node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
@@ -11320,12 +11325,7 @@ $button4.on('click', function () {
   localStorage.setItem('n', n);
   $number.text(n);
 });
-},{"jquery":"../node_modules/jquery/dist/jquery.js","./app1.css":"app1.css"}],"gobal.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/css-loader.js"}],"app2.css":[function(require,module,exports) {
+},{"jquery":"../node_modules/jquery/dist/jquery.js","./app1.css":"app1.css"}],"app2.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -11341,13 +11341,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var $tarBar = (0, _jquery.default)('#app2 .tar-bar');
 var $tarContent = (0, _jquery.default)('#app2 .tar-content');
+var key = "app2 index";
+var localKey = localStorage.getItem(key) || 1;
 $tarBar.on('click', 'li', function (e) {
   var $li = (0, _jquery.default)(e.currentTarget);
   $li.addClass('pink').siblings().removeClass('pink');
   var index = $li.index();
+  localStorage.setItem(key, index);
   $tarContent.children().eq(index).addClass('active').siblings().removeClass('active');
 });
-$tarBar.children().eq(1).trigger('click');
+$tarBar.children().eq(localKey).trigger('click');
 },{"jquery":"../node_modules/jquery/dist/jquery.js","./app2.css":"app2.css"}],"app3.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -11363,8 +11366,17 @@ require("./app3.css");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var $app3 = (0, _jquery.default)('#app3 .sequare');
+var key = 'app3 click';
+var localKey = localStorage.getItem(key) === 'yes';
+$app3.toggleClass('active', localKey);
 $app3.on('click', function (e) {
-  $app3.toggleClass('active');
+  if ($app3.hasClass('active')) {
+    $app3.removeClass('active');
+    localStorage.setItem(key, 'no');
+  } else {
+    $app3.addClass('active');
+    localStorage.setItem(key, 'yes');
+  }
 });
 },{"jquery":"../node_modules/jquery/dist/jquery.js","./app3.css":"app3.css"}],"app4.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -11391,16 +11403,16 @@ $app4.on('mouseenter', function () {
 
 require("./reset.css");
 
-require("./app1.js");
-
 require("./gobal.css");
+
+require("./app1.js");
 
 require("./app2.js");
 
 require("./app3.js");
 
 require("./app4.js");
-},{"./reset.css":"reset.css","./app1.js":"app1.js","./gobal.css":"gobal.css","./app2.js":"app2.js","./app3.js":"app3.js","./app4.js":"app4.js"}],"../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./reset.css":"reset.css","./gobal.css":"gobal.css","./app1.js":"app1.js","./app2.js":"app2.js","./app3.js":"app3.js","./app4.js":"app4.js"}],"../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -11428,7 +11440,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57978" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50848" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

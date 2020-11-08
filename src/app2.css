@@ -1,4 +1,3 @@
-#app2 {}
 #app2 .tar-bar {
     display: flex;
 }
@@ -10,7 +9,7 @@
     background-color: pink;
     color: red;
 }
-#app2 .tar-content {}
+
 #app2 .tar-content li{
     display: none;
 }
