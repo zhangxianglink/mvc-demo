@@ -11288,45 +11288,64 @@ module.hot.accept(reloadCSS);
 },{"_css_loader":"../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/css-loader.js"}],"app1.js":[function(require,module,exports) {
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
 var _jquery = _interopRequireDefault(require("jquery"));
 
 require("./app1.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var app1Html = "<section id=\"app1\">\n                    <div class=\"output\">\n                        <span id='number'>100</span>\n                    </div>\n                    <div class=\"actions\">\n                        <button id='add1'>+2</button>\n                        <button id='subtract2'>-2</button>\n                        <button id='mulitply3'>*2</button>\n                        <button id = 'divide4'>/2</button>\n                    </div>\n                </section>";
-(0, _jquery.default)(app1Html).appendTo('body > .page');
-var $button1 = (0, _jquery.default)('#add1');
-var $button2 = (0, _jquery.default)('#subtract2');
-var $button3 = (0, _jquery.default)('#mulitply3');
-var $button4 = (0, _jquery.default)('#divide4');
-var $number = (0, _jquery.default)('#number');
-var n = localStorage.getItem('n');
-$number.text(n || 100);
-$button1.on('click', function () {
-  var n = parseInt($number.text());
-  n += 2;
-  localStorage.setItem('n', n);
-  $number.text(n);
-});
-$button2.on('click', function () {
-  var n = parseInt($number.text());
-  n -= 2;
-  localStorage.setItem('n', n);
-  $number.text(n);
-});
-$button3.on('click', function () {
-  var n = parseInt($number.text());
-  n *= 2;
-  localStorage.setItem('n', n);
-  $number.text(n);
-});
-$button4.on('click', function () {
-  var n = parseInt($number.text());
-  n /= 2;
-  localStorage.setItem('n', n);
-  $number.text(n);
-});
+var m = {
+  data: {
+    n: parseInt(localStorage.getItem('n'))
+  }
+};
+var v = {
+  el: null,
+  app1Html: "<div>\n        <div class=\"output\">\n            <span id='number'>{{n}}</span>\n        </div>\n        <div class=\"actions\">\n            <button id='add1'>+2</button>\n            <button id='subtract2'>-2</button>\n            <button id='mulitply3'>*2</button>\n            <button id = 'divide4'>/2</button>\n        </div>\n        </div>\n        ",
+  init: function init(container) {
+    //将事件绑定在index.html<section/> 
+    v.container = (0, _jquery.default)(container); //<section/> 填充页面
+
+    v.render();
+  },
+  render: function render() {
+    if (v.el === null) {
+      v.el = (0, _jquery.default)(v.app1Html.replace('{{n}}', m.data.n)).appendTo(v.container);
+    } else {
+      var newElment = (0, _jquery.default)(v.app1Html.replace('{{n}}', m.data.n));
+      v.el.replaceWith(newElment);
+      v.el = newElment;
+    }
+  }
+};
+var c = {
+  init: function init(container) {
+    v.init(container);
+    c.bindEvents();
+  },
+  bindEvents: function bindEvents() {
+    v.container.on('click', '#add1', function () {
+      m.data.n += 2;
+      v.render();
+    }), v.container.on('click', '#subtract2', function () {
+      m.data.n -= 2;
+      v.render();
+    }), v.container.on('click', '#mulitply3', function () {
+      m.data.n *= 2;
+      v.render();
+    }), v.container.on('click', '#divide4', function () {
+      m.data.n /= 2;
+      v.render();
+    });
+  }
+};
+var _default = c;
+exports.default = _default;
 },{"jquery":"../node_modules/jquery/dist/jquery.js","./app1.css":"app1.css"}],"app2.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -11413,13 +11432,17 @@ require("./reset.css");
 
 require("./gobal.css");
 
-require("./app1.js");
+var _app = _interopRequireDefault(require("./app1.js"));
 
 require("./app2.js");
 
 require("./app3.js");
 
 require("./app4.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_app.default.init('#app1');
 },{"./reset.css":"reset.css","./gobal.css":"gobal.css","./app1.js":"app1.js","./app2.js":"app2.js","./app3.js":"app3.js","./app4.js":"app4.js"}],"../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -11448,7 +11471,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54039" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51609" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
