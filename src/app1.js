@@ -1,9 +1,15 @@
 import $ from 'jquery'
 import './app1.css'
 
+const eventBus = $(window);
+
 const m = {
     data: {
         n : parseInt(localStorage.getItem('n'))
+    },
+    updateNumber(data){
+        Object.assign(m.data,data);
+        eventBus.trigger('m:updated');
     }
 }
 
@@ -40,6 +46,9 @@ const c = {
     init(container){
         v.init(container,m.data.n);
         c.autoBindEvents();
+        eventBus.on('m:updated', () => {
+            v.render(m.data.n);
+        })
     },
     events : {
         "click,#add1" : "add",
@@ -48,20 +57,16 @@ const c = {
         "click,#divide4" : "divide"
     },
     add(){
-        m.data.n += 2;
-        v.render(m.data.n);
+        m.updateNumber({n : m.data.n += 2});
     },
     subtract(){
-        m.data.n -= 2;
-        v.render(m.data.n);
+        m.updateNumber({n : m.data.n -= 2});
     },
     mulitply(){
-        m.data.n *= 2;
-        v.render(m.data.n);
+        m.updateNumber({n : m.data.n *= 2});
     },
     divide(){
-        m.data.n /= 2;
-        v.render(m.data.n);
+        m.updateNumber({n : m.data.n /= 2});
     },
     autoBindEvents(){
         for(let key in this.events){

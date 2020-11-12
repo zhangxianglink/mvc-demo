@@ -11299,9 +11299,14 @@ require("./app1.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var eventBus = (0, _jquery.default)(window);
 var m = {
   data: {
     n: parseInt(localStorage.getItem('n'))
+  },
+  updateNumber: function updateNumber(data) {
+    Object.assign(m.data, data);
+    eventBus.trigger('m:updated');
   }
 };
 var v = {
@@ -11325,6 +11330,9 @@ var c = {
   init: function init(container) {
     v.init(container, m.data.n);
     c.autoBindEvents();
+    eventBus.on('m:updated', function () {
+      v.render(m.data.n);
+    });
   },
   events: {
     "click,#add1": "add",
@@ -11333,20 +11341,24 @@ var c = {
     "click,#divide4": "divide"
   },
   add: function add() {
-    m.data.n += 2;
-    v.render(m.data.n);
+    m.updateNumber({
+      n: m.data.n += 2
+    });
   },
   subtract: function subtract() {
-    m.data.n -= 2;
-    v.render(m.data.n);
+    m.updateNumber({
+      n: m.data.n -= 2
+    });
   },
   mulitply: function mulitply() {
-    m.data.n *= 2;
-    v.render(m.data.n);
+    m.updateNumber({
+      n: m.data.n *= 2
+    });
   },
   divide: function divide() {
-    m.data.n /= 2;
-    v.render(m.data.n);
+    m.updateNumber({
+      n: m.data.n /= 2
+    });
   },
   autoBindEvents: function autoBindEvents() {
     for (var key in this.events) {
@@ -11483,7 +11495,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49989" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50615" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
