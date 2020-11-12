@@ -21,47 +21,54 @@ const v = {
         </div>
         </div>
         `,
-    init(container){
+    init(container,n){
         //将事件绑定在index.html<section/> 
-        v.container = $(container);
+        v.el = $(container);
         //<section/> 填充页面
-        v.render();
+        v.render(n);
     },
-    render(){
-        if(v.el === null){
-            v.el = $(v.app1Html.replace('{{n}}',m.data.n)).appendTo(v.container);
-        }else{
-            const newElment = $(v.app1Html.replace('{{n}}',m.data.n));
-            v.el.replaceWith(newElment);
-            v.el = newElment;
+    render(n){
+        if(v.el.children().length !== 0){
+            v.el.empty();
         }
+        $(v.app1Html.replace('{{n}}',n)).appendTo(v.el);
     }
 }
 
 
 const c = {
     init(container){
-        v.init(container);
-        c.bindEvents();
+        v.init(container,m.data.n);
+        c.autoBindEvents();
     },
-    bindEvents(){
-        v.container.on('click','#add1', () => {
-            m.data.n += 2;
-            v.render();
-        }),
-        v.container.on('click','#subtract2', () => {
-            m.data.n -= 2;
-            v.render();
-        }),
-       
-        v.container.on('click','#mulitply3', () => {
-            m.data.n *= 2;
-            v.render();
-        }),
-        v.container.on('click','#divide4', () => {
-            m.data.n /= 2;
-            v.render();
-        })
+    events : {
+        "click,#add1" : "add",
+        "click,#subtract2" : "subtract",
+        "click,#mulitply3" : "mulitply",
+        "click,#divide4" : "divide"
+    },
+    add(){
+        m.data.n += 2;
+        v.render(m.data.n);
+    },
+    subtract(){
+        m.data.n -= 2;
+        v.render(m.data.n);
+    },
+    mulitply(){
+        m.data.n *= 2;
+        v.render(m.data.n);
+    },
+    divide(){
+        m.data.n /= 2;
+        v.render(m.data.n);
+    },
+    autoBindEvents(){
+        for(let key in this.events){
+            const value = c[c.events[key]];
+            const index = key.indexOf(',');
+            v.el.on(key.slice(0,index), key.slice(index + 1), value);
+        }
     }
 }
 

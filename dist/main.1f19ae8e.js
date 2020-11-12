@@ -11307,41 +11307,53 @@ var m = {
 var v = {
   el: null,
   app1Html: "<div>\n        <div class=\"output\">\n            <span id='number'>{{n}}</span>\n        </div>\n        <div class=\"actions\">\n            <button id='add1'>+2</button>\n            <button id='subtract2'>-2</button>\n            <button id='mulitply3'>*2</button>\n            <button id = 'divide4'>/2</button>\n        </div>\n        </div>\n        ",
-  init: function init(container) {
+  init: function init(container, n) {
     //将事件绑定在index.html<section/> 
-    v.container = (0, _jquery.default)(container); //<section/> 填充页面
+    v.el = (0, _jquery.default)(container); //<section/> 填充页面
 
-    v.render();
+    v.render(n);
   },
-  render: function render() {
-    if (v.el === null) {
-      v.el = (0, _jquery.default)(v.app1Html.replace('{{n}}', m.data.n)).appendTo(v.container);
-    } else {
-      var newElment = (0, _jquery.default)(v.app1Html.replace('{{n}}', m.data.n));
-      v.el.replaceWith(newElment);
-      v.el = newElment;
+  render: function render(n) {
+    if (v.el.children().length !== 0) {
+      v.el.empty();
     }
+
+    (0, _jquery.default)(v.app1Html.replace('{{n}}', n)).appendTo(v.el);
   }
 };
 var c = {
   init: function init(container) {
-    v.init(container);
-    c.bindEvents();
+    v.init(container, m.data.n);
+    c.autoBindEvents();
   },
-  bindEvents: function bindEvents() {
-    v.container.on('click', '#add1', function () {
-      m.data.n += 2;
-      v.render();
-    }), v.container.on('click', '#subtract2', function () {
-      m.data.n -= 2;
-      v.render();
-    }), v.container.on('click', '#mulitply3', function () {
-      m.data.n *= 2;
-      v.render();
-    }), v.container.on('click', '#divide4', function () {
-      m.data.n /= 2;
-      v.render();
-    });
+  events: {
+    "click,#add1": "add",
+    "click,#subtract2": "subtract",
+    "click,#mulitply3": "mulitply",
+    "click,#divide4": "divide"
+  },
+  add: function add() {
+    m.data.n += 2;
+    v.render(m.data.n);
+  },
+  subtract: function subtract() {
+    m.data.n -= 2;
+    v.render(m.data.n);
+  },
+  mulitply: function mulitply() {
+    m.data.n *= 2;
+    v.render(m.data.n);
+  },
+  divide: function divide() {
+    m.data.n /= 2;
+    v.render(m.data.n);
+  },
+  autoBindEvents: function autoBindEvents() {
+    for (var key in this.events) {
+      var value = c[c.events[key]];
+      var index = key.indexOf(',');
+      v.el.on(key.slice(0, index), key.slice(index + 1), value);
+    }
   }
 };
 var _default = c;
@@ -11471,7 +11483,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51609" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49989" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
